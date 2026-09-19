@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
-const cvPath = "/CV-Fabrizio-Arellano.pdf";
+const assetPath = (file) => `${import.meta.env.BASE_URL}${file}`;
+const cvPath = assetPath("CV-Fabrizio-Arellano.pdf");
 
 function SocialLinks({ compact = false }) {
   const size = compact ? 20 : 22;
@@ -52,7 +53,7 @@ function App() {
   return <>
     <Header />
     <main>
-      <section className="hero" id="home"><div className="hero-text"><p className="hero-kicker">&lt;Desarrollador Junior /&gt;<span className="cursor" aria-hidden="true" /></p><h1>Fabrizio<br />Arellano</h1><p className="hero-stack">Java · Spring Boot · Angular</p><p className="hero-desc">Construyo APIs REST sólidas e interfaces web funcionales.<br />De la base de datos al despliegue.</p><div className="cta"><a className="btn" href="#proyectos">Ver Proyectos</a><a className="btn btn-ghost" href={cvPath} download="CV-Fabrizio-Arellano.pdf">Descargar CV</a></div></div><div className="hero-art"><img src="/assets/avatar.jpg" alt="Fabrizio Arellano Garcia" /></div></section>
+      <section className="hero" id="home"><div className="hero-text"><p className="hero-kicker">&lt;Desarrollador Junior /&gt;<span className="cursor" aria-hidden="true" /></p><h1>Fabrizio<br />Arellano</h1><p className="hero-stack">Java · Spring Boot · Angular</p><p className="hero-desc">Construyo APIs REST sólidas e interfaces web funcionales.<br />De la base de datos al despliegue.</p><div className="cta"><a className="btn" href="#proyectos">Ver Proyectos</a><a className="btn btn-ghost" href={cvPath} download="CV-Fabrizio-Arellano.pdf">Descargar CV</a></div></div><div className="hero-art"><img src={assetPath("assets/avatar.jpg")} alt="Fabrizio Arellano Garcia" /></div></section>
       <section id="proyectos"><SectionTitle>Proyectos</SectionTitle><div className="grid reveal">{projects.map((project, index) => <ProjectCard key={project.title} project={project} index={index} />)}</div></section>
       <section id="sobre-mi"><SectionTitle>Sobre mí</SectionTitle><div className="about reveal"><p>Soy estudiante de Ingeniería de Software (8.º ciclo, UTP) con formación aplicada en desarrollo web full-stack. He construido sistemas de gestión reales con Java, Spring Boot y Angular, integrando bases de datos relacionales, pruebas de endpoints con Postman y control de versiones con Git.</p><p>Mi objetivo es iniciar mi carrera profesional como Desarrollador Junior, aportando a equipos que valoren el trabajo en equipo, la proactividad y la entrega responsable.</p><ul className="langs"><li>Español — Nativo</li><li>Inglés — B2</li></ul></div></section>
       <section id="habilidades"><SectionTitle>Habilidades</SectionTitle><div className="skills-grid reveal">{[["Lenguajes", ["Java", "JavaScript", "SQL", "HTML", "CSS"]], ["Frameworks", ["Spring Boot", "Angular", "React", "Node.js"]], ["Bases de datos", ["MySQL", "PostgreSQL", "SQL Server"]], ["Herramientas", ["Git", "GitHub", "Postman", "Swagger", "VS Code", "Workbench", "pgAdmin"]], ["Conceptos", ["APIs REST", "CRUD", "JDBC", "Rutas protegidas", "Responsive", "Despliegue"]], ["Blandas", ["Trabajo en equipo", "Proactividad", "Comunicación", "Responsabilidad", "Adaptación"]]].map(([title, items]) => <div className="skill-card" key={title}><h3>{title}</h3>{tags(items)}</div>)}</div></section>
