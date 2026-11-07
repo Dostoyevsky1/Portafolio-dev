@@ -174,7 +174,7 @@ section {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 34px;
 }
 
@@ -197,10 +197,16 @@ section {
   background: var(--cream-dark);
 }
 
-.card-media svg {
+.project-preview {
+  display: block;
+}
+
+.project-preview img {
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 8 / 5;
+  object-fit: contain;
 }
 
 .card-body {
@@ -246,6 +252,7 @@ section {
 
 .card-links {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   font-size: .85rem;
   font-weight: 700;
