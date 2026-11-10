@@ -1,6 +1,4 @@
-import { useEffect } from "react";
-import ProjectCard from "./components/ProjectCard.jsx";
-import { projects } from "./data/projects.js";
+import Projects from "./components/Projects.jsx";
 import { skillGroups } from "./data/skills.js";
 
 const assetPath = (file) => `${import.meta.env.BASE_URL}${file}`;
@@ -22,7 +20,11 @@ function SocialLinks({ compact = false }) {
 }
 
 function Header() {
-  return <header className="nav"><a className="logo" href="#home">Fabrizio<span>.Dev</span></a><nav className="nav-links" aria-label="Navegación principal"><a href="#home">Inicio</a><a href="#proyectos">Proyectos</a><a href="#sobre-mi">Sobre mí</a><a href="#contacto">Contacto</a></nav><SocialLinks /></header>;
+  return <header className="nav"><Signature /><nav className="nav-links" aria-label="Navegación principal"><a href="#home">Inicio</a><a href="#proyectos">Proyectos</a><a href="#sobre-mi">Sobre mí</a><a href="#contacto">Contacto</a></nav><SocialLinks /></header>;
+}
+
+function Signature() {
+  return <a className="logo" href="#home" aria-label="Fabrizio Arellano — Inicio"><span className="monogram" aria-hidden="true">FA<small>♠</small></span><span className="signature-name">Fabrizio<br />Arellano</span></a>;
 }
 
 const tags = (items) => <ul className="tags">{items.map((item) => <li key={item}>{item}</li>)}</ul>;
@@ -31,25 +33,21 @@ const tags = (items) => <ul className="tags">{items.map((item) => <li key={item}
 function SectionTitle({ children, className = "" }) { return <h2 className={`section-title ${className}`}>{children}</h2>; }
 
 function App() {
-  useEffect(() => {
-    document.documentElement.classList.add("js");
-    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); } }), { threshold: 0.12 });
-    document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
-    return () => observer.disconnect();
-  }, []);
-
   return <>
+    <a className="skip-link" href="#contenido">Saltar al contenido</a>
     <Header />
-    <main>
-      <section className="hero" id="home"><div className="hero-text"><p className="hero-kicker">&lt;Desarrollador Junior /&gt;<span className="cursor" aria-hidden="true" /></p><h1>Fabrizio<br />Arellano</h1><p className="hero-stack">React · Java · Spring Boot</p><p className="hero-desc">Desarrollo interfaces web con React y las integro con APIs REST.<br />También cuento con experiencia en Angular.</p><div className="cta"><a className="btn" href="#proyectos">Ver Proyectos</a><a className="btn btn-ghost" href={cvPath} download="CV-Fabrizio-Arellano.pdf">Descargar CV</a></div></div><div className="hero-art"><img src={assetPath("assets/avatar.jpg")} alt="Fabrizio Arellano Garcia" /></div></section>
-      <section id="proyectos"><SectionTitle>Proyectos</SectionTitle><div className="grid reveal">{projects.map((project) => <ProjectCard key={project.id} project={project} />)}</div></section>
-      <section id="sobre-mi"><SectionTitle>Sobre mí</SectionTitle><div className="about reveal"><p>Soy estudiante de Ingeniería de Software (8.º ciclo, UTP) con formación aplicada en desarrollo web full-stack. Mi principal fortaleza en frontend es React, con el que construyo interfaces responsive y componentes reutilizables; también cuento con experiencia en Angular. He desarrollado proyectos académicos de gestión con Java y Spring Boot, integrando APIs REST, bases de datos relacionales, pruebas de endpoints con Postman y control de versiones con Git.</p><p>Mi objetivo es iniciar mi carrera profesional como Desarrollador Junior, aportando a equipos que valoren el trabajo en equipo, la proactividad y la entrega responsable.</p><ul className="langs"><li>Español — Nativo</li><li>Inglés — B2</li></ul></div></section>
-      <section id="habilidades"><SectionTitle>Habilidades</SectionTitle><div className="skills-grid reveal">{skillGroups.map(({ title, items }) => <div className="skill-card" key={title}><h3>{title}</h3>{tags(items)}</div>)}</div></section>
-      <section id="experiencia"><SectionTitle>Experiencia académica</SectionTitle><div className="xp-list reveal"><article className="xp-card"><span className="xp-date">2023 — Actualidad</span><h3>Desarrollo Full-Stack (académico)</h3><p>Desarrollo de aplicaciones web full-stack, con mayor dominio de React para construir interfaces responsive y componentes reutilizables, además de experiencia con Angular. Integración del frontend con APIs REST desarrolladas en Java y Spring Boot, conexión a bases de datos relacionales y pruebas de endpoints mediante Postman.</p></article></div></section>
-      <section id="formacion"><SectionTitle>Formación</SectionTitle><div className="xp-list reveal"><article className="xp-card"><span className="xp-date">2023 — Actualidad</span><h3>Ingeniería de Software — UTP, Lima</h3><p>8.º ciclo. Formación orientada al desarrollo de software con enfoque práctico y metodologías ágiles.</p></article></div></section>
-      <section id="contacto" className="contact"><SectionTitle className="contact-title">¿Trabajamos juntos?</SectionTitle><div className="contact-box reveal"><ul className="contact-info"><li><a href="mailto:arellano_04_26@hotmail.com">arellano_04_26@hotmail.com</a></li><li><a href="tel:+51948206622">+51 948-206-622</a></li><li>Lima, Perú</li></ul><div className="cta"><a className="btn" href="mailto:arellano_04_26@hotmail.com">Escríbeme</a><a className="btn btn-ghost" href="https://github.com/Dostoyevsky1" target="_blank" rel="noopener noreferrer">GitHub</a></div></div></section>
+    <main id="contenido" tabIndex={-1}>
+      <section className="hero" id="home"><div className="hero-text"><p className="hero-kicker">Desarrollador Junior</p><h1>Fabrizio<br />Arellano</h1><p className="hero-stack">React · Java · Spring Boot</p><p className="hero-desc">Desarrollo interfaces web con React y las integro con APIs REST.<br />También cuento con experiencia en Angular.</p><div className="cta"><a className="btn" href="#proyectos">Ver proyectos</a><a className="btn btn-ghost" href={cvPath} download="CV-Fabrizio-Arellano.pdf">Descargar CV</a></div></div><figure className="hero-art personal-card"><div className="portrait-window"><img src={assetPath("assets/avatar.jpg")} alt="Retrato ilustrado de Fabrizio con gafas y audífonos, inspirado en una carta de juego" /></div><figcaption><span className="portrait-name">Fabrizio Arellano</span><span className="portrait-location">Lima, Perú <span aria-hidden="true">♠</span></span></figcaption></figure></section>
+      <Projects />
+      <section id="sobre-mi" className="about-section"><SectionTitle>Sobre mí</SectionTitle><div className="about"><p className="about-lead">Mi punto fuerte es React. Mi perspectiva también incluye lo que ocurre detrás de la interfaz.</p><p>Soy estudiante de Ingeniería de Software en la UTP. En mis proyectos académicos conecto interfaces con APIs y bases de datos: una forma de entender el recorrido completo de una aplicación, desde la pantalla hasta la información que muestra.</p><p>Busco mi primera oportunidad como desarrollador junior para seguir creciendo en equipo y aportar mi experiencia con React, Java y Spring Boot.</p><ul className="langs"><li>Español <span>Nativo</span></li><li>Inglés <span>B2</span></li></ul></div></section>
+      <section id="habilidades"><SectionTitle>Habilidades</SectionTitle><p className="section-intro">React es mi principal herramienta. Estas son las tecnologías que acompañan mi desarrollo web.</p><div className="skills-grid">{skillGroups.map(({ title, items, description, featured }) => <article className={`skill-card${featured ? " skill-featured" : ""}`} key={title}><h3>{title}</h3><p>{description}</p>{tags(items)}</article>)}</div></section>
+      <div className="journey">
+        <section id="experiencia"><SectionTitle>Experiencia académica</SectionTitle><article className="timeline-entry"><p className="xp-date">2023 — Actualidad</p><h3>Desarrollo full-stack</h3><p>Proyectos académicos de aplicaciones web, desde la interfaz hasta la persistencia de datos.</p><ul className="experience-points"><li><strong>Frontend.</strong> Componentes reutilizables e interfaces responsive con React; experiencia complementaria con Angular.</li><li><strong>Integración.</strong> APIs REST con Java y Spring Boot, bases de datos relacionales y pruebas de endpoints con Postman.</li></ul><a className="text-link" href="#proyectos">Explorar los proyectos</a></article></section>
+        <section id="formacion"><SectionTitle>Formación</SectionTitle><article className="timeline-entry"><p className="xp-date">2023 — Actualidad</p><h3>Ingeniería de Software</h3><p className="education-school">Universidad Tecnológica del Perú</p><p>8.º ciclo · Lima, Perú</p><p>Formación práctica en desarrollo de software y metodologías ágiles, aplicada en proyectos académicos.</p><a className="text-link" href={cvPath} download="CV-Fabrizio-Arellano.pdf">Consultar mi CV</a></article></section>
+      </div>
+      <section id="contacto" className="contact"><div className="contact-heading"><SectionTitle className="contact-title">¿Trabajamos<br />juntos?</SectionTitle><p>Si buscas un desarrollador junior con enfoque en React, conversemos.</p></div><div className="contact-details"><a className="contact-email" href="mailto:arellano_04_26@hotmail.com">arellano_04_26@hotmail.com<span>Escríbeme por correo ↗</span></a><div className="contact-secondary"><a href="tel:+51948206622">+51 948-206-622</a><span>Lima, Perú</span></div><SocialLinks compact /></div></section>
     </main>
-    <footer className="footer"><a className="logo" href="#home">Fabrizio<span>.Dev</span></a><p>© 2026 Fabrizio Arellano Garcia — Lima, Perú</p><SocialLinks compact /></footer>
+    <footer className="footer"><Signature /><p>© {new Date().getFullYear()} Fabrizio Arellano Garcia</p><a className="text-link" href="#home">Volver al inicio ↑</a></footer>
   </>;
 }
 

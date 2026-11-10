@@ -1,6 +1,10 @@
 export const projects = [
   {
     id: "zambacare",
+    summary: "Interfaz de gestión y seguimiento capilar para Zamba Pisando Tierra.",
+    context: "Demostración académica centrada en la interfaz y la navegación del seguimiento capilar. La versión publicada utiliza datos ficticios para explorar la propuesta visual.",
+    features: ["Pantalla de acceso con identidad visual propia y diseño responsive.", "Vistas servidas con Spring Boot y Thymeleaf.", "Interfaz con Bootstrap y comportamientos en JavaScript.", "Demo web publicada en Render."],
+    screenshots: [{ image: "assets/projects/zambacare-mobile.jpg", alt: "Pantalla de acceso de Zambacare en un teléfono", caption: "Vista móvil" }],
     num: "A♠",
     sub: "Demo académica — Zambacare",
     title: "Zambacare — Gestión y seguimiento capilar",
@@ -14,6 +18,10 @@ export const projects = [
   },
   {
     id: "portafolio",
+    summary: "Presentación personal en React, con proyectos interactivos y publicación automatizada.",
+    context: "Este sitio reúne proyectos, habilidades y formación académica. Su estructura separa los datos de presentación de los componentes React y conserva una identidad visual de cartas, papel y tinta azul.",
+    features: ["Componentes reutilizables y contenido organizado en datos.", "Selección de proyectos y galerías controladas con estado de React.", "Diseño adaptable, navegación con teclado y respeto por movimiento reducido.", "Descarga del CV y despliegue con Vite y GitHub Actions."],
+    screenshots: [{ image: "assets/projects/portafolio-mobile.jpg", alt: "Presentación del portafolio de Fabrizio Arellano en móvil", caption: "Vista móvil" }],
     num: "2♥",
     sub: "Proyecto React — Portafolio",
     title: "Portafolio personal — React y Vite",
@@ -27,6 +35,10 @@ export const projects = [
   },
   {
     id: "tambo",
+    summary: "Gestión de productos, pedidos y sucursales con Angular y Spring Boot.",
+    context: "Proyecto académico full-stack que conecta una interfaz en Angular con un backend Java. La aplicación reúne operaciones de gestión y acceso autenticado; la demo requiere iniciar sesión.",
+    features: ["Gestión de productos, pedidos y sucursales.", "Frontend Angular conectado a una API REST.", "Persistencia relacional con MySQL.", "Autenticación con Spring Security y JWT."],
+    screenshots: [{ image: "assets/projects/tambo-mobile.jpg", alt: "Pantalla de acceso del Sistema Tambo en móvil", caption: "Vista móvil" }],
     num: "3♦",
     sub: "Proyecto full-stack — Tambo",
     title: "Tambo — Gestión de pedidos e inventario",
